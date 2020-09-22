@@ -27,7 +27,6 @@ let a=[
 
 function Card(props) {
 
-  const [popup, setpopup]=useState(false);
   const [shupopup, setshupopup]=useState(false);
   const [sortpopup, setsortpopup]=useState(false);
   const [content, setcontent]=useState(1);
@@ -44,26 +43,11 @@ const date = new Date();
 
 var itemupdate = data;
  setcontent(content + 1);
- if(content<=10)
- {
-   itemupdate.push({"id":uuid() , content , date})
- }
- else {
-    setpopup(true)
-const timer = setTimeout(() => {
-  setpopup(false)
-}, 1000);
-return () => clearTimeout(timer);
-
- }
- setData(itemupdate);
- setColumns(columnsFromBackend)
+ itemupdate.push({"id":uuid() , content , date})
  
 }
 
-const popshut=()=>{
-  setpopup(!popup);
-}
+
 
 const shuContent=()=>{
  var itemupdate = data;
@@ -212,17 +196,7 @@ const onDragEnd = (result, columns, setColumns)=>{
         </div>
         <div className="ml-2 flex">
         {/**pop up of add cards */}
-        {popup ?
-        <div className="relative z-10"> 
-        <div className=" -my-2">
-        <div ><i class="fa fa-caret-up fa-2x text-blue-400 ml-2" aria-hidden="true" ></i></div>
-        <div className="bg-blue-400 -my-3 border rounded p-3 text-red-600 flex">
-        <p className="p-2 ">Sorry Cannot Add more Cards</p>
-        </div>
-        </div>
-        </div>
-         : " "
-        }
+        
         {    /**          shuffle pop up of add cards ends */}
         {shupopup ?
         <div className="absolute z-20 ml-24"> 
